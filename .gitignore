@@ -186,7 +186,7 @@ __pycache__/
 
 # SQLite database
 *.db
-
+insighthub.db
 # VS Code
 .vscode/
 
