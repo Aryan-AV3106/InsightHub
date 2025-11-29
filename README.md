@@ -28,7 +28,7 @@ Box plot
 Pie chart
 
 #History Tracking
--All actions (summaries, cleaning steps, etc.) are saved in an SQLite history table for future refrence.
+-All actions (summaries, cleaning steps, etc.) are saved in an SQLite history table for future reference.
 
 #Dataset Management
 -View existing datasets, check their timestamps, and delete old entries if needed.
@@ -41,13 +41,13 @@ InsightHub/
 ├── analytics.py
 ├── data_handler.py
 ├── database.py
-├── visulalize.py
+├── visualize.py
 └── README.md
 
 ##Installation:
 
 Clone the repository:
-git clone https://github.com/yourusername/InsightHub.git
+git clone (https://github.com/Aryan-AV3106/InsightHub)
 cd InsightHub
 
 Install the required libraries:

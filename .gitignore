@@ -179,3 +179,27 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# SQLite database
+*.db
+
+# VS Code
+.vscode/
+
+# Environment files
+.env/
+venv/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Jupyter checkpoints (if added later)
+.ipynb_checkpoints/
