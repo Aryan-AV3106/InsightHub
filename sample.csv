@@ -1,6 +1,21 @@
-Name,Age,Department,Salary,Country
-Aryan,19,Computer Science,40000,USA
-Dhairya,20,Physics,35000,India
-Krisha,22,Mathematics,42000,Canada
-Dhriti,24,Life Sciences,44500,India
-Harsh,21,Engineering,41000,USA
+OrderID,CustomerName,Age,Country,Product,Category,Quantity,Price,OrderDate
+1001,John Doe,29,USA,Laptop,Electronics,1,899.99,2023-01-15
+1002,Emma Brown,34,UK,Smartphone,Electronics,2,699.50,2023-02-10
+1003,Liam Patel,41,India,Headphones,Accessories,3,59.99,2023-02-12
+1004,Sophia Lee,27,Canada,Keyboard,Accessories,1,29.99,2023-03-01
+1005,Noah Wilson,22,USA,Monitor,Electronics,1,199.99,2023-03-08
+1006,Ava Singh,30,India,Office Chair,Furniture,2,129.99,2023-03-11
+1007,Oliver Chen,38,China,Desk,Furniture,1,249.99,2023-03-15
+1008,Mia Garcia,31,Mexico,Mouse,Accessories,2,19.99,2023-04-01
+1009,Elijah Johnson,45,USA,Tablet,Electronics,1,349.99,2023-04-05
+1010,Isabella Martinez,26,Spain,Smartwatch,Electronics,1,149.99,2023-04-22
+1011,James Kim,36,South Korea,Earbuds,Accessories,2,39.99,2023-04-25
+1012,Charlotte Davis,33,USA,Laptop,Electronics,1,1099.00,2023-05-05
+1013,Benjamin Clark,40,Australia,Monitor,Electronics,2,179.99,2023-05-11
+1014,Amelia Hernandez,29,Mexico,Desk,Furniture,1,269.99,2023-05-20
+1015,Lucas Walker,23,Canada,Keyboard,Accessories,1,34.99,2023-06-01
+1016,Harper Allen,32,USA,Mouse,Accessories,3,18.50,2023-06-07
+1017,Henry Young,39,UK,Office Chair,Furniture,1,139.99,2023-06-13
+1018,Evelyn Adams,28,USA,Smartphone,Electronics,1,729.00,2023-06-20
+1019,Michael Stewart,47,USA,Tablet,Electronics,1,329.99,2023-06-23
+1020,Aria Baker,24,India,Laptop,Electronics,1,999.50,2023-07-01
