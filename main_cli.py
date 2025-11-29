@@ -1,6 +1,6 @@
 from database import setup_database
 from data_handler import load_data,get_file_path
-from visulalize import *
+from visualize import *
 from analytics import *
 from database import *
 import pandas as pd
