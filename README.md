@@ -36,6 +36,7 @@ Pie chart
 ##Project Structure
 
 InsightHub/
+
 │
 ├── main_cli.py
 ├── analytics.py
