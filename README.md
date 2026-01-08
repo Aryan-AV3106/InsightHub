@@ -1,24 +1,24 @@
 ![alt text](image.png)
-##InsightHub
+## InsightHub
 
 InsightHub is a command-line tool I built to load, clean, analyze, and visualize datasets.
 It uses Python, Pandas, Matplotlib, and SQLite. The goal of the project is to have a simple, modular data analysis workflow that currently runs entirely in a terminal.
 
-##Features
+## Features
 
 Data
 Load CSV or Excel files.
 -The dataset name and timestamp are stored in a local SQLite database so you can keep track of files you've worked with.
 
-#Basic Analysis
+## Basic Analysis
 -View summary statistics, find missing values, and inspect individual columns.
 The goal is to quickly understand data quality and the overall structure of the dataset.
 
-#Data Cleaning
+## Data Cleaning
 -Sort data, fill missing values, and export cleaned versions.
 This helps prepare the dataset for further analysis, reporting, or modeling.
 
-#Visualizations
+## Visualizations
 -Generate simple plots using Matplotlib:
 Histogram
 Bar chart
@@ -27,13 +27,28 @@ Scatter plot
 Box plot
 Pie chart
 
-#History Tracking
+## Supervisde Machine Learning
+Train and evaluate models directly from the CLI:
+Linear Regression (Regression)
+Logistic Regression
+K-Nearest Neighbors
+Decision Tree
+Support Vector Machine
+Random Forest
+
+
+Each model includes:
+Train/test split
+Appropriate valuation metrics
+Interactive prediction on new inputs
+
+## History Tracking
 -All actions (summaries, cleaning steps, etc.) are saved in an SQLite history table for future reference.
 
-#Dataset Management
+## Dataset Management
 -View existing datasets, check their timestamps, and delete old entries if needed.
 
-##Project Structure
+## Project Structure
 
 InsightHub/
 
@@ -45,16 +60,16 @@ InsightHub/
 ├── visualize.py
 └── README.md
 
-##Installation:
+## Installation:
 
 Clone the repository:
 git clone (https://github.com/Aryan-AV3106/InsightHub)
 cd InsightHub
 
 Install the required libraries:
-pip install pandas matplotlib openpyxl colorama
+pip install pandas matplotlib openpyxl scikit-learn colorama
 
-#How to Run
+## How to Run
 
 Inside the project folder:
 python main.py
@@ -69,11 +84,12 @@ This will open the menu:
 6. View Existing Datasets
 7. Delete Existing Datasets
 8. Visualize Columns
-9. Exit
+9. ML Supervised
+10. Exit
 
 Choose an option and follow the prompts.
 
-#Design & Architecture
+## Design & Architecture
 -InsightHub is written using a class-based (OOP) structure.
 The main class maintains the state of the current dataset and routes menu options to the appropriate modules.
 
@@ -82,17 +98,15 @@ The code is split across separate files:
 data_handler.py – reading CSV/Excel files
 analytics.py – summary, missing values, column analysis, sort file, fill missing, export the updated file.
 visulalize.py – plotting functions
+ml_supervised.py - Supervised ML algorithms
 database.py – SQLite interaction
 main.py – Main menu and insighthub class
 
-#Upcoming:
+## Upcoming:
 
 - Streamlit UI version of InsightHub
-- Basic machine learning support, including:
-  Linear Regression
-  Logistic Regression
-  Decision Trees
-  K-Means clustering
+- Model comparison dashboard
+- Unsupervised learning (K-Means)
 
 Notes
 -Visualizations open in a separate Matplotlib window.

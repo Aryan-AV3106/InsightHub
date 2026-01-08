@@ -1,0 +1,21 @@
+OrderID,CustomerName,Age,Country,Product,Category,Quantity,Price
+1019,Michael Stewart,47,USA,Tablet,Electronics,1,329.99
+1009,Elijah Johnson,45,USA,Tablet,Electronics,1,349.99
+1003,Liam Patel,41,India,Headphones,Accessories,3,59.99
+1013,Benjamin Clark,40,Australia,Monitor,Electronics,2,179.99
+1017,Henry Young,39,UK,Office Chair,Furniture,1,139.99
+1007,Oliver Chen,38,China,Desk,Furniture,1,249.99
+1011,James Kim,36,South Korea,Earbuds,Accessories,2,39.99
+1002,Emma Brown,34,UK,Smartphone,Electronics,2,699.5
+1012,Charlotte Davis,33,USA,Laptop,Electronics,1,1099.0
+1016,Harper Allen,32,USA,Mouse,Accessories,3,18.5
+1008,Mia Garcia,31,Mexico,Mouse,Accessories,2,19.99
+1006,Ava Singh,30,India,Office Chair,Furniture,2,129.99
+1014,Amelia Hernandez,29,Mexico,Desk,Furniture,1,269.99
+1001,John Doe,29,USA,Laptop,Electronics,1,899.99
+1018,Evelyn Adams,28,USA,Smartphone,Electronics,1,729.0
+1004,Sophia Lee,27,Canada,Keyboard,Accessories,1,29.99
+1010,Isabella Martinez,26,Spain,Smartwatch,Electronics,1,149.99
+1020,Aria Baker,24,India,Laptop,Electronics,1,999.5
+1015,Lucas Walker,23,Canada,Keyboard,Accessories,1,34.99
+1005,Noah Wilson,22,USA,Monitor,Electronics,1,199.99

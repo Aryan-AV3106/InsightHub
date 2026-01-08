@@ -3,6 +3,7 @@ from data_handler import load_data,get_file_path
 from visualize import *
 from analytics import *
 from database import *
+from ml_supervised import *
 from colorama import Fore, Back, Style, init
 init(autoreset=True)
 
@@ -24,7 +25,8 @@ class InsigtHub():
             print(Fore.YELLOW + "6. View Existing Datasets.")
             print(Fore.YELLOW + "7. Delete Existing Datasets.")
             print(Fore.YELLOW + "8. Visualize Columns.")
-            print(Fore.YELLOW + "9. Exit.")
+            print(Fore.YELLOW + "9. ML supervised.")
+            print(Fore.YELLOW + "10. Exit")
             try:
                 choice = int(input(Fore.BLUE + "Enter choice: "))
             except:
@@ -51,10 +53,14 @@ class InsigtHub():
             # delete Existing datasets
             elif (choice == 7):
                 self.delete_existing_dataset()
+            # visualize data
             elif(choice == 8):
                 self.visualize()
-            # Exit        
+            # train supervised ml models
             elif(choice == 9):
+                self.ml_supervised()
+            # Exit        
+            elif(choice == 10):
                 print(Fore.CYAN + Style.BRIGHT +"Thank You for using InsightHub.\n")
                 break
             # Invalid choice
@@ -252,6 +258,53 @@ class InsigtHub():
             elif(choice == 6):
                 plot_pie(self.df)
             elif (choice == 7):
+                return
+            else:
+                print(Fore.RED +"\nInvalid Choice!!!\nEnter a valid choice.\n")
+                continue
+    
+    def ml_supervised(self):
+        if self.df is None:
+            print(Fore.RED +"No data set loaded yet\nPlease load a dataset first.\n")
+            return
+        
+        while True:
+            print(Fore.CYAN +Style.BRIGHT + "\n     |ML - Models|      ")
+            print(Fore.YELLOW + "1. Linear Regression.")
+            print(Fore.YELLOW + "2. Logistic Regression.")
+            print(Fore.YELLOW + "3. K Nearest Neighbors.")
+            print(Fore.YELLOW + "4. Decision Tree.")
+            print(Fore.YELLOW + "5. Suport Vector Machine.")
+            print(Fore.YELLOW + "6. Random Forest.")
+            print(Fore.YELLOW + "7. Back.")
+
+
+            try: 
+                print()
+                choice = int(input(Fore.BLUE + "Please enter your Choice : "))
+            except:
+                print(Fore.RED +"\nInvalid Choice!!!\nEnter a valid choice.\n")
+                continue
+
+            if choice == 1:
+                Linear_regression(self.df)
+                save_history("Ran Linear Regression.")
+            elif choice == 2:
+                Logistic_Regression(self.df)
+                save_history("Ran Logistic Regression.")
+            elif choice == 3:
+                KNN(self.df)
+                save_history("Ran K Nearest Neighbors.")
+            elif choice == 4:
+                decision_tree(self.df)
+                save_history("Ran Decision Tree.")
+            elif choice == 5:
+                svm(self.df)
+                save_history("Ran Suport Vector Machine.")
+            elif choice == 6:
+                random_forest(self.df)
+                save_history("Ran Random Forest.")
+            elif choice == 7:
                 return
             else:
                 print(Fore.RED +"\nInvalid Choice!!!\nEnter a valid choice.\n")
