@@ -8,6 +8,7 @@ from colorama import Fore, Back, Style, init
 init(autoreset=True)
 
 class InsigtHub():
+
     def __init__(self):
         self.df = None
         self.dataset_id = None 
@@ -90,7 +91,6 @@ class InsigtHub():
         else:
             print(Fore.RED +"\nInvalid choice, please enter a valid choice\n")
             return
-
 
     def view_insights(self):
         if self.df is None:
@@ -277,7 +277,6 @@ class InsigtHub():
             print(Fore.YELLOW + "5. Suport Vector Machine.")
             print(Fore.YELLOW + "6. Random Forest.")
             print(Fore.YELLOW + "7. Back.")
-
 
             try: 
                 print()

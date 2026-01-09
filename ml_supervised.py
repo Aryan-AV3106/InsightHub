@@ -1,6 +1,5 @@
 from colorama import *
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn import linear_model
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
@@ -28,60 +27,47 @@ def pre_process(df):
         print(Fore.RED +"Column not found.\n please Try again.\n")
         return  None
     y = df[target] # y axis 1D array
+    if y.dtype == "object":
+        y = y.astype("category").cat.codes
 
-    ## spliting the data into training and Test datasets(4:1)
+    return features,x,y
 
-    x_train,x_test,y_train,y_test = train_test_split(
-        x,
-        y,  
-        train_size= 0.8,
-        random_state= 42
-    )
-    return features,x_train,x_test,y_train,y_test
+def clean(x):
 
-def predict(model,features,scaler = None):
-    while True:
-        c = input(Fore.BLUE + "Would you like to predict more values (y/n)?")
-        if c.lower() == "y":
-            predict = []
-            for feature in features:
-                while True:
-                    f = input(Fore.BLUE + f"please enter the feature value for {feature}")
-                    try:
-                        f = float(f)
-                        predict.append(f)
-                        break
-                    except:
-                        print(Fore.RED +"Input is not a numeric value.\nPlease try again.\n")
+    x = x.copy()
 
-            new_df = pd.DataFrame([predict],columns=features)
-            # for algorithms with scaled data
-            if scaler is not None:
-                new_df = scaler.transform(new_df)
-            pred = model.predict(new_df)
-            print(Fore.GREEN +f"predicted target is : {pred[0]}")            
-            
-        elif c.lower() == "n":
-            print("Thank You\n")
-            break
+    for col in x.select_dtypes(include=["number"]).columns:
+        x[col] = x[col].fillna(x[col].median())
 
-        else:
-            print(Fore.RED +"\nInvalid Choice!!!\nEnter a valid choice.\n")
+    for col in x.select_dtypes(exclude=["number"]).columns:
+        x[col]=x[col].fillna("Unknown")
+
+    # encoding the columns using onehot encode
+    x = pd.get_dummies(x, drop_first=True)
+
+    return x 
+
 
 
 def Linear_regression(df):
     result = pre_process(df)
     if result is None:
         return
-    features,x_train,x_test,y_train,y_test = result
+    features,x,y = result
+    x = clean(x)
+    
+    # Train Test split
+    x_train,x_test,y_train,y_test = train_test_split(
+    x,
+    y,
+    test_size=0.2,  # 20 % data
+    random_state=42
+    )
 
     ## Training the model
     model = linear_model.LinearRegression()
-    try:
-        model.fit(x_train,y_train)
-    except:
-        print(Fore.RED +"Column is not numeric.\n please use a numeric column.\n")
-        return
+    model.fit(x_train,y_train)
+
 
     pred_y = model.predict(x_train) # predicted y for training data
 
@@ -105,14 +91,21 @@ def Linear_regression(df):
     baseline_r2 = r2_score(y_test,y_baseline_pred)
     print(Fore.GREEN + f"Baseline Mae: {baseline_mae}\nBaseline R^2: {baseline_r2}")
 
-    # new predictions
-    predict(model,features)
 
 def Logistic_Regression(df):
     result = pre_process(df)
     if result is None:
         return
-    features,x_train,x_test,y_train,y_test = result
+    features,x,y = result
+    x = clean(x)
+
+    # Train Test split
+    x_train,x_test,y_train,y_test = train_test_split(
+    x,
+    y,
+    test_size=0.2,  # 20 % data
+    random_state=42
+    )
 
     # scalling 
     scaler = StandardScaler()
@@ -120,11 +113,8 @@ def Logistic_Regression(df):
     x_test_scaled = scaler.transform(x_test)
 
     model = LogisticRegression()
-    try:
-        model.fit(x_train_scaled,y_train)
-    except:
-        print(Fore.RED +"Column is not numeric.\n please use a numeric column.\n")
-        return
+    model.fit(x_train_scaled,y_train)
+
 
     pred_test_y = model.predict(x_test_scaled)
     acc = accuracy_score(y_test,pred_test_y)
@@ -132,14 +122,20 @@ def Logistic_Regression(df):
     print(Fore.GREEN + f"Accuracy: {acc}\n confusion Matrix: {matrix}")
     print(classification_report(y_test,pred_test_y))
 
-    # new predictions
-    predict(model,features,scaler)
-
 def KNN(df):
     result = pre_process(df)
     if result is None:
         return
-    features,x_train,x_test,y_train,y_test = result
+    features,x,y = result
+    x = clean(x)
+
+    # Train Test split
+    x_train,x_test,y_train,y_test = train_test_split(
+    x,
+    y,
+    test_size=0.2,  # 20 % data
+    random_state=42
+    )
 
     # scalling 
     scaler = StandardScaler()
@@ -147,11 +143,8 @@ def KNN(df):
     x_test_scaled = scaler.transform(x_test)
 
     model = KNeighborsClassifier()
-    try:
-        model.fit(x_train_scaled,y_train)
-    except:
-        print(Fore.RED +"Column is not numeric.\n please use a numeric column.\n")
-        return
+    model.fit(x_train_scaled,y_train)
+
 
     pred_test_y = model.predict(x_test_scaled)
     acc = accuracy_score(y_test,pred_test_y)
@@ -159,21 +152,24 @@ def KNN(df):
     print(Fore.GREEN + f"Accuracy: {acc}\n confusion Matrix: {matrix}")
     print(classification_report(y_test,pred_test_y))
     
-    # new predictions
-    predict(model,features, scaler)
 
 def decision_tree(df):
     result = pre_process(df)
     if result is None:
         return
-    features,x_train,x_test,y_train,y_test = result
+    features,x,y = result
+    x = clean(x)
+
+    # Train Test split
+    x_train,x_test,y_train,y_test = train_test_split(
+    x,
+    y,
+    test_size=0.2,  # 20 % data
+    random_state=42
+    )
 
     model = DecisionTreeClassifier(random_state=42)
-    try:
-        model.fit(x_train,y_train)
-    except:
-        print(Fore.RED +"Column is not numeric.\n please use a numeric column.\n")
-        return
+    model.fit(x_train,y_train)
 
     pred_test_y = model.predict(x_test)
     acc = accuracy_score(y_test,pred_test_y)
@@ -181,14 +177,21 @@ def decision_tree(df):
     print(Fore.GREEN + f"Accuracy: {acc}\n confusion Matrix: {matrix}")
     print(classification_report(y_test,pred_test_y))
     
-    # new predictions
-    predict(model,features)
 
 def svm(df):
     result = pre_process(df)
     if result is None:
         return
-    features,x_train,x_test,y_train,y_test = result
+    features,x,y = result
+    x = clean(x)
+
+    # Train Test split
+    x_train,x_test,y_train,y_test = train_test_split(
+    x,
+    y,
+    test_size=0.2,  # 20 % data
+    random_state=42
+    )
 
     # scalling 
     scaler = StandardScaler()
@@ -196,11 +199,7 @@ def svm(df):
     x_test_scaled = scaler.transform(x_test)
 
     model = SVC(kernel= 'rbf')
-    try:
-        model.fit(x_train_scaled,y_train)
-    except:
-        print(Fore.RED +"Column is not numeric.\n please use a numeric column.\n")
-        return
+    model.fit(x_train_scaled,y_train)
 
     pred_test_y = model.predict(x_test_scaled)
     acc = accuracy_score(y_test,pred_test_y)
@@ -208,21 +207,24 @@ def svm(df):
     print(Fore.GREEN + f"Accuracy: {acc}\n confusion Matrix: {matrix}")
     print(classification_report(y_test,pred_test_y))
     
-    # new predictions
-    predict(model,features, scaler)
 
 def random_forest(df):
     result = pre_process(df)
     if result is None:
         return
-    features,x_train,x_test,y_train,y_test = result
+    features,x,y = result
+    x = clean(x)
+
+    # Train Test split
+    x_train,x_test,y_train,y_test = train_test_split(
+    x,
+    y,
+    test_size=0.2,  # 20 % data
+    random_state=42
+    )
 
     model = RandomForestClassifier()
-    try:
-        model.fit(x_train,y_train)
-    except:
-        print(Fore.RED +"Column is not numeric.\n please use a numeric column.\n")
-        return
+    model.fit(x_train,y_train)
 
     pred_test_y = model.predict(x_test)
     acc = accuracy_score(y_test,pred_test_y)
@@ -230,6 +232,3 @@ def random_forest(df):
     print(Fore.GREEN + f"Accuracy: {acc}\n confusion Matrix: {matrix}")
     print(classification_report(y_test,pred_test_y))
     
-    # new predictions
-    predict(model,features)
-
